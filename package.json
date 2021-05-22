@@ -1,0 +1,35 @@
+{
+  "name": "recipeshare",
+  "version": "0.0.0",
+  "engines": {
+    "node": "15.8.0"
+  },
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "devstart": "nodemon ./bin/www",
+    "serverstart": "DEBUG=recipeshare:* npm run devstart"
+  },
+  "dependencies": {
+    "async": "^3.2.0",
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "dotenv": "^8.2.0",
+    "express": "~4.16.1",
+    "express-session": "^1.17.1",
+    "express-validator": "^6.10.0",
+    "helmet": "^4.4.1",
+    "http-errors": "~1.6.3",
+    "mongoose": "^5.12.3",
+    "morgan": "~1.9.1",
+    "nodemailer": "^6.6.0",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "pug": "^3.0.2"
+  },
+  "devDependencies": {
+    "eslint": "^7.23.0",
+    "nodemon": "^2.0.7"
+  }
+}

@@ -1,0 +1,43 @@
+doctype html
+html(lang='en-US')
+  head
+    title= title
+    meta(charset='UTF-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='description', content='Site for uploading and sharing your favorite recipes')
+    meta(name='keywords', content='recipe, share, social, chat, cooking, chef')
+    meta(name='author', content='DKK')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='preconnect', href='https://fonts.gstatic.com')
+    link(href='https://fonts.googleapis.com/css2?family=Quicksand&display=swap', rel='stylesheet')
+  body
+    div(class='signup-panel')
+      div(class='signup-form-top')
+        header 
+          img(src="assets/chefhat.png", alt="Chef Hat", width=88, height=85)
+        a(href='../signin')
+          button(class='signin-button hover-darkgray hover-pointer') Sign in
+      p(style='font-size:35px;') Join for free
+      p(style='font-size:50px;font-weight:600;') Create an account
+      form(action="", method="POST")
+        input(name="firstName", placeholder="First Name", type="text")
+        input(name="lastName", placeholder="Last Name", type="text")
+        input(name="username", placeholder="Enter your username", type="text")
+        input(name="password", placeholder="Enter your password", type="password")
+        button(class='signup-button hover-darkgray hover-pointer') Sign up
+      p(style='font-size:30px;') Already have an account?
+        a(href='../signin')  
+          b(class='hover-underline') Sign in
+      p(style='margin-top: 200px;font-size:25px;text-underline-offset:3px;')
+        a(href='#')
+          u(class='hover-pointer') Privacy Policy
+        |  and 
+        a(href='#')
+          u(class='hover-pointer') Term of Service
+    div(class='poster-image')
+      img(src='assets/cooking.jpg', alt='Cooking Stock Photo')
+      div(class='poster-image-text') 
+        p Create, share, and sell 
+        p your favorite recipes!
+  
