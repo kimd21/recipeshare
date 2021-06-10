@@ -1,0 +1,9 @@
+extends navbar
+
+block content
+  h1(style='display:flex;padding-left:100px;') Create Recipe
+  form(id='recipeCreateForm', action="", method='POST', style='display:flex;flex-direction:column;width:50%;padding-left:100px;')
+    input(type="text", placeholder="Title", name="title", required) 
+    textarea(name="description", placeholder="Enter Recipe Description", required)
+    ol(id='instructions') Instructions
+    button(type='button', onclick=`addstep('instructions')`) Add Step

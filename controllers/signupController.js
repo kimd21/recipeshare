@@ -15,7 +15,7 @@ exports.signup_post = (req, res, next) => {
       lastName: req.body.lastName,
       username: req.body.username,
       password: hashpw,
-      status: 'reg'
+      status: 'free'
     }).save(err => {
       if (err) {
         return next(err);

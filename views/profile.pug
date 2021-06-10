@@ -1,0 +1,11 @@
+extends navbar
+
+block content
+  h1(style="padding-top:20px;") #{locals.currentUser.username}
+  section(style="display:flex;margin-top:200px;")
+    h2 Blogs
+    button Add Blog
+  section(style="display:flex;margin-top:200px;") 
+    h2 Recipes
+    a(href=`/recipe/${locals.currentUser.username}/create`)
+      button Add Recipe

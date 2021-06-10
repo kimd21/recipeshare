@@ -1,4 +1,4 @@
-extends layout
+extends navbar
 
 block content
   header
@@ -6,7 +6,7 @@ block content
       div(style='display:flex;flex-direction:column;')
         div(style='display:flex;')
           img(id='hamburgermenu', src='assets/hamburgermenu.svg', alt='menu', height=105, width=99, onclick='loadNavbar();')
-          h1 RecipeShare
+          h1 #{title}
           img(src='assets/chefhat.png', alt='Chef Hat', height=88, width=85)
         div
           p(style='margin-left:102px;opacity:0.5;font-size:40px;') A place to create, share, and sell your recipes
@@ -14,6 +14,4 @@ block content
         img(src='assets/search.png', style='margin-right:50px;' alt='Search Icon', height=70, width=73)
         a(href='/signin', style='margin-right:50px;font-size:50px;') Login
         a(href='/signup', style='margin-right:50px;font-size:50px;') Register
-  if user
-    h2 Welcome #{user.username}
   

@@ -20,15 +20,24 @@ const signupRouter = require('./routes/signup');
 const aboutRouter = require('./routes/about');
 const contactRouter = require('./routes/contact');
 const feedbackRouter = require('./routes/feedback');
+const recipeRouter = require('./routes/recipe');
+const profileRouter = require('./routes/profile');
+const signoutRouter = require('./routes/signout');
 const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
-app.use(session({secret: 'cats', resave: false, saveUninitialized: true}));
+app.use(session({secret: process.env.SESSION_SECRET, resave: false, saveUninitialized: true}));
 app.use(passport.initialize());
 app.use(passport.session());
+
+// Pass logged in user info to global locals object
+app.use(function(req, res, next) {
+  res.locals.currentUser = req.user;
+  next();
+});
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -43,6 +52,9 @@ app.use('/signup', signupRouter);
 app.use('/about', aboutRouter);
 app.use('/contact', contactRouter);
 app.use('/feedback', feedbackRouter);
+app.use('/recipe', recipeRouter);
+app.use('/profile', profileRouter);
+app.use('/signout', signoutRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
