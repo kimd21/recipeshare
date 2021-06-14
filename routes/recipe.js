@@ -8,7 +8,7 @@ const recipeController = require('../controllers/recipeController.js');
 // Create a new recipe
 router.get('/:id/create', recipeController.recipe_create_get);
 
-// router.post('/:id/create', recipeController.recipe_create_post);
+router.post('/:id/create', recipeController.recipe_create_post);
 
 // router.get('/:id/detail', recipeController.recipe_detail);
 

@@ -16,8 +16,7 @@ body {
   height: 100vh;
   background-color: #DEDEDE;
 }
-
-ul {
+#main-navbar ul {
   position: fixed;
   /*Maintain navbar position upon scrolling*/
   overflow: auto;
@@ -26,8 +25,7 @@ ul {
   margin-left: 10px;
   list-style-type: none;
 }
-
-li {
+#main-navbar ul li {
   display: block;
   margin-bottom: 42px;
   font-size: 40px;
@@ -160,10 +158,6 @@ textarea {
   top: 50%;
   height: 1px;
   background: #ccc;
-}
-
-#hamburgermenu:hover {
-  cursor: pointer;
 }
 
 /*# sourceMappingURL=style.css.map */

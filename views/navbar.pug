@@ -9,7 +9,7 @@ block navbar
         a(href="#") Search
       if locals.currentUser
         li
-          a(href='/profile') Profile
+          a(href=`/profile/${locals.currentUser.username}`) Profile
       li
         a(href='/about') About
       li

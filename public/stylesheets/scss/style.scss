@@ -15,21 +15,21 @@ body {
   width: 240px;
   height: 100vh;
   background-color: #DEDEDE;
-}
 
-ul {
-  position: fixed; /*Maintain navbar position upon scrolling*/
-  overflow: auto; /*Enable scrolling*/
-  margin-top: 14vh;
-  margin-left: 10px;
-  list-style-type: none;
-}
-
-li {
-  display: block;
-  margin-bottom: 42px;
-  font-size: 40px;
-  font-weight: 600;
+  ul {
+    position: fixed; /*Maintain navbar position upon scrolling*/
+    overflow: auto; /*Enable scrolling*/
+    margin-top: 14vh;
+    margin-left: 10px;
+    list-style-type: none;
+    
+    li {
+      display: block;
+      margin-bottom: 42px;
+      font-size: 40px;
+      font-weight: 600;
+    }
+  }
 }
 
 a {
@@ -158,8 +158,4 @@ textarea {
   top: 50%;
   height: 1px;
   background: #ccc;
-}
-
-#hamburgermenu:hover {
-  cursor: pointer;
 }
