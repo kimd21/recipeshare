@@ -2,7 +2,9 @@ extends navbar
 
 block content
   h1(style='display:flex;padding-left:100px;') Create Recipe
-  form(id='recipeCreateForm', action="", method='POST', style='display:flex;flex-direction:column;width:50%;padding-left:100px;')
+  form(id='recipeCreateForm', action="", method='POST', enctype='multipart/form-data', style='display:flex;flex-direction:column;width:50%;padding-left:100px;')
+    label(for='file') Choose File
+    input(type='file', name='file')
     input(type="text", placeholder="Title", name="title", required) 
     textarea(name="description", placeholder="Enter Recipe Description", required)
     fieldset(id='ingredients')
@@ -13,3 +15,4 @@ block content
       legend Instructions
       button(type='button', onclick=`addInputToField('instructions', 'Step')`) Add Step
       button(type='button', onclick=`removeInputFromField('instructions')`) Remove Step
+    button Submit

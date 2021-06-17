@@ -1,0 +1,12 @@
+extends navbar
+
+block content
+  h1 #{recipe.title}
+  p #{recipe.description}
+  ul
+    for i in recipe.ingredients
+      li #{i}
+  ol
+    for i in recipe.instructions
+      li #{i}
+  img(src=`${image.url}`)

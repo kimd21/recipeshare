@@ -1,16 +1,14 @@
 const express = require('express');
+const upload = require('../config/upload');
 const router = express.Router();
 const recipeController = require('../controllers/recipeController.js');
 
-// Get list of user's recipes
-// router.get('/:id', recipeController.recipe_list);
-
 // Create a new recipe
-router.get('/:id/create', recipeController.recipe_create_get);
+router.get('/create', recipeController.recipe_create_get);
 
-router.post('/:id/create', recipeController.recipe_create_post);
+router.post('/create', upload.single('file'), recipeController.recipe_create_post);
 
-// router.get('/:id/detail', recipeController.recipe_detail);
+router.get('/:id', recipeController.recipe_detail);
 
 // router.get('/:id/update', recipeController.recipe_update_get);
 

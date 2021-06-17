@@ -8,10 +8,12 @@ const logger = require('morgan');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv').config();
 const helmet = require('helmet');
+const methodOverride = require('method-override');
 
-mongoose.connect(process.env.MONGODB_URI, {useUnifiedTopology: true, useNewUrlParser: true} );
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+const connect = mongoose.connect(process.env.MONGODB_URI, {useUnifiedTopology: true, useNewUrlParser: true});
+connect.then(() => {
+  console.log('Connected to MongoDB')
+}, (err) => console.log(err));
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -23,6 +25,7 @@ const feedbackRouter = require('./routes/feedback');
 const recipeRouter = require('./routes/recipe');
 const profileRouter = require('./routes/profile');
 const signoutRouter = require('./routes/signout');
+const imageRouter = require('./routes/image');
 const app = express();
 
 // view engine setup
@@ -39,11 +42,15 @@ app.use(function(req, res, next) {
   next();
 });
 
+// Middleware
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Allow usage of delete request
+app.use(methodOverride('_method'));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -55,6 +62,7 @@ app.use('/feedback', feedbackRouter);
 app.use('/recipe', recipeRouter);
 app.use('/profile', profileRouter);
 app.use('/signout', signoutRouter);
+app.use('/image', imageRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
