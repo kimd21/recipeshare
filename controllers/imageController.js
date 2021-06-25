@@ -10,6 +10,7 @@ connect.once('open', function() {
 
 exports.image_get = function(req, res) {
   gfs.files.findOne({filename: req.params.filename}, (err, file) => {
+    if (err) {return next(err);}
     // Check if file
     if (!file || file.length === 0) {
       return res.status(404).json({

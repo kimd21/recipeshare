@@ -1,0 +1,56 @@
+$arrow-margin: 50px;
+$grid-gap: 50px;
+
+.gallery-slider {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  align-items: center;
+  margin: 0 auto;
+  width: 1200px;
+  height: 500px;
+  border: 1px solid black;
+}
+
+.left-arrow { 
+  width: 40px;
+  height: 40px;
+  background: #ff0000; 
+  margin-right: $arrow-margin;
+}
+
+.right-arrow {   
+  width: 40px;
+  height: 40px;
+  background: #ff0000; 
+  margin-left: $arrow-margin;
+}
+
+.gallery-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: 1px solid black;
+  overflow-x: hidden;
+}
+
+.gallery {
+  display: grid;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+  grid-template-rows: repeat(2, 1fr);
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(500px, 1fr);
+  gap: $grid-gap;
+  left: 0;
+}
+
+.gallery-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
+}
+

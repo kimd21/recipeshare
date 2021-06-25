@@ -1,0 +1,29 @@
+extends navbar
+
+block content
+  h1(style='display:flex;padding-left:100px;') Create Recipe
+  form(id='recipeCreateForm', action="", method='POST', enctype='multipart/form-data', style='display:flex;flex-direction:column;width:50%;padding-left:100px;')
+    label(for='file') Choose File
+    input(type='file', name='file')
+    img(src=`${image.url}`, alt=`${image.filename}`, width=200, height=200)
+    input(type=`text`, name='title', placeholder=`${recipe.title}`, required) 
+    textarea(name=`description`, placeholder=`${recipe.description}`, required)
+    fieldset
+      legend Ingredients
+      button(type='button', onclick=`addInputToField('ingredients', 'Ingredient')`) Add Ingredient
+      button(type='button', onclick=`removeInputFromField('ingredients')`) Remove Ingredient
+      ul(id='ingredients')
+        for i in recipe.ingredients
+          li #{i}
+    fieldset
+      legend Instructions
+      button(type='button', onclick=`addInputToField('instructions', 'Step')`) Add Step
+      button(type='button', onclick=`removeInputFromField('instructions')`) Remove Step
+      ol(id='instructions')
+        for i in recipe.instructions
+          li #{i}
+    button Submit
+  if errors
+    ul
+      for error in errors
+        li!= error.msg

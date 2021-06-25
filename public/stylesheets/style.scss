@@ -1,3 +1,5 @@
+@import 'gallery';
+
 *, *:before, *:after {
   box-sizing: border-box;
   margin: 0;
@@ -6,7 +8,7 @@
 }
 
 body {
-  font-family: "Quicksand", Helvetica, Arial, sans-serif;
+  font-family: 'Quicksand', Helvetica, Arial, sans-serif;
 }
 
 #main-navbar {
@@ -15,21 +17,21 @@ body {
   width: 240px;
   height: 100vh;
   background-color: #DEDEDE;
-}
-#main-navbar ul {
-  position: fixed;
-  /*Maintain navbar position upon scrolling*/
-  overflow: auto;
-  /*Enable scrolling*/
-  margin-top: 14vh;
-  margin-left: 10px;
-  list-style-type: none;
-}
-#main-navbar ul li {
-  display: block;
-  margin-bottom: 42px;
-  font-size: 40px;
-  font-weight: 600;
+
+  ul {
+    position: fixed; /*Maintain navbar position upon scrolling*/
+    overflow: auto; /*Enable scrolling*/
+    margin-top: 14vh;
+    margin-left: 10px;
+    list-style-type: none;
+    
+    li {
+      display: block;
+      margin-bottom: 42px;
+      font-size: 40px;
+      font-weight: 600;
+    }
+  }
 }
 
 a {
@@ -119,7 +121,7 @@ textarea {
   text-underline-offset: 0.2em;
 }
 
-.poster-image, .poster-image img {
+.poster-image, .poster-image img{
   position: absolute;
   top: 0;
   right: 0;
@@ -149,7 +151,7 @@ textarea {
 }
 
 .midline-text:before {
-  content: "";
+  content: '';
   display: block;
   position: absolute;
   z-index: -1;
@@ -159,5 +161,3 @@ textarea {
   height: 1px;
   background: #ccc;
 }
-
-/*# sourceMappingURL=style.css.map */

@@ -7,12 +7,18 @@ block content
     input(type='file', name='file')
     input(type="text", placeholder="Title", name="title", required) 
     textarea(name="description", placeholder="Enter Recipe Description", required)
-    fieldset(id='ingredients')
+    fieldset
       legend Ingredients
       button(type='button', onclick=`addInputToField('ingredients', 'Ingredient')`) Add Ingredient
       button(type='button', onclick=`removeInputFromField('ingredients')`) Remove Ingredient
-    fieldset(id='instructions')
+      ul(id='ingredients')
+    fieldset
       legend Instructions
       button(type='button', onclick=`addInputToField('instructions', 'Step')`) Add Step
       button(type='button', onclick=`removeInputFromField('instructions')`) Remove Step
+      ol(id='instructions')
     button Submit
+  if errors
+    ul
+      for error in errors
+        li!= error.msg

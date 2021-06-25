@@ -1,8 +1,29 @@
 extends navbar
 
 block content
-  h1(style="padding-top:20px;") #{locals.currentUser.username}
-  section(style="display:flex;margin-top:200px;") 
+  h1(style="display:flex;margin-left:500px;padding-top:20px;") #{locals.currentUser.username}
+  section(style="display:flex;margin-left:500px;margin-top:200px;") 
     h2 Recipes
     a(href=`/recipe/create`)
       button Add Recipe
+  
+  div(class='gallery-slider')
+    button(class='left-arrow')
+    div(class='gallery-container')
+      div(class='gallery')
+        div(class='gallery-img')
+        div(class='gallery-img')
+        div(class='gallery-img')
+        div(class='gallery-img')
+    button(class='right-arrow')
+  if filenames.length
+    script.
+      let filenames = `!{filenames}`.split(',');
+      let urls = `!{recipeUrls}`.split(',');
+    script(src='/javascripts/gallery.js')
+    
+    
+
+
+    
+    
