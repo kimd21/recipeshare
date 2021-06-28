@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+// Each recipe is associated with one image model
 const ImageSchema = new Schema({
   filename: {type: String, unique: true, required: true},
   fileId: {type: String, required: true},

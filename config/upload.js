@@ -9,6 +9,7 @@ const storage = new GridFsStorage({
   url: process.env.MONGODB_URI,
   file: (req, file) => {
     return new Promise((resolve, reject) => {
+      // Encrypt filename using crypto module
       crypto.randomBytes(16, (err, buf) => {
         if (err) {
           return reject(err);

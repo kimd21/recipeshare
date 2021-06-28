@@ -10,13 +10,14 @@ const dotenv = require('dotenv').config();
 const helmet = require('helmet');
 const methodOverride = require('method-override');
 
+// Connect to MongoDB
 const connect = mongoose.connect(process.env.MONGODB_URI, {useUnifiedTopology: true, useNewUrlParser: true});
 connect.then(() => {
   console.log('Connected to MongoDB')
 }, (err) => console.log(err));
 
+// Establish routes
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
 const signinRouter = require('./routes/signin');
 const signupRouter = require('./routes/signup');
 const aboutRouter = require('./routes/about');
@@ -32,6 +33,7 @@ const app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+// PassportJS for user authentication
 app.use(session({secret: process.env.SESSION_SECRET, resave: false, saveUninitialized: true}));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -53,7 +55,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(methodOverride('_method'));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use('/signin', signinRouter);
 app.use('/signup', signupRouter);
 app.use('/about', aboutRouter);

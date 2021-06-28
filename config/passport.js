@@ -13,6 +13,7 @@ passport.use('local',
       if (!user) {
         return done(null, false, {message: 'Incorrect username'});
       };
+      // BcryptJS to authenticate encrypted password
       bcrypt.compare(password, user.password, (err, res) => {
         if (res) {
           // passwords match, login
