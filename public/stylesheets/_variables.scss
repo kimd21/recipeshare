@@ -1,0 +1,17 @@
+$nav-margin: 240px;
+$arrow-margin: 50px;
+$arrow-size: 40px;
+$grid-gap: 20px;
+$gallery-img-size: 380px;
+$gallery-div-size: $gallery-img-size + 20px;
+$gallery-cols: 3;
+$gallery-rows: 2;
+$hamburger-menu-width: 99px;
+
+:export {
+  navMargin: $nav-margin;
+  galleryDivSize: $gallery-div-size;
+  gridGap: $grid-gap;
+  galleryCols: $gallery-cols;
+  galleryRows: $gallery-rows;
+}

@@ -1,4 +1,5 @@
-function addInputToField(field_id, placeholder) {
+// Add input to a list form
+export function addInputToField(field_id, placeholder) {
   let field = document.getElementById(field_id);
   let input = document.createElement('input');
 

@@ -4,7 +4,7 @@ const router = express.Router();
 const nodemailer = require('nodemailer');
 const dotenv = require('dotenv').config();
 
-/* GET Contact page */
+// GET feedback page
 router.get('/', function(req, res, next) {
   res.render('feedback');
 });
@@ -15,7 +15,7 @@ router.post('/', function(req, res, next) {
     port: 465, // secure port
     secure: true,
     auth: {
-      user: process.env.EMAIL, // my gmail acct 
+      user: process.env.EMAIL,
       pass: process.env.EMAIL_PASS
     }
   });

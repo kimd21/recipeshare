@@ -1,16 +1,17 @@
 extends navbar
 
 block content
-  h1 #{recipe.title}
-  p #{recipe.description}
-  ul
-    for i in recipe.ingredients
-      li #{i}
-  ol
-    for i in recipe.instructions
-      li #{i}
-  img(src=`${image.url}`, alt=`${image.filename}`, width=200, height=200)
-  p Are you sure you want to delete this recipe permanently?
-  form(action='', method='POST')
-    button(type='submit' name='submit' value='Yes') Yes
-    button(type='submit' name='submit' value='No') No
+  div(class='nav-margin')
+    h1 #{recipe.title}
+    p #{recipe.description}
+    ul
+      for i in recipe.ingredients
+        li #{i}
+    ol
+      for i in recipe.instructions
+        li #{i}
+    img(src=`${image.url}`, alt=`${image.filename}`, width=200, height=200)
+    p Are you sure you want to delete this recipe permanently?
+    form(action='', method='POST')
+      button(type='submit' name='submit' value='Yes') Yes
+      button(type='submit' name='submit' value='No') No

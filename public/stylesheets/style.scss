@@ -1,42 +1,107 @@
 @import 'gallery';
+@import 'variables';
+@import 'icons';
 
 *, *:before, *:after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
   border: 0;
+  font-family: 'Quicksand', Helvetica, Arial, sans-serif;
 }
 
 body {
-  font-family: 'Quicksand', Helvetica, Arial, sans-serif;
+  font-family: inherit;
 }
 
 #main-navbar {
   display: block;
+  position: fixed;
+  left: 0;
   float: left;
-  width: 240px;
-  height: 100vh;
+  width: $nav-margin;
+  height: 100%;
   background-color: #DEDEDE;
 
   ul {
-    position: fixed; /*Maintain navbar position upon scrolling*/
     overflow: auto; /*Enable scrolling*/
-    margin-top: 14vh;
-    margin-left: 10px;
+    margin-top: 18vh;
     list-style-type: none;
     
     li {
       display: block;
-      margin-bottom: 42px;
+      padding: 21px 0 21px 10px;
       font-size: 40px;
       font-weight: 600;
     }
+
+    li:hover {
+      width: 100%;
+      background-color:#909090;
+      cursor: pointer;
+      a {
+        display: block;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        color: white;
+      }
+    }
   }
+}
+
+#index-header {
+  display: flex;
+  position: relative;
+  margin-left: $nav-margin;
+  display: flex;
+  width: 2120px;
+  justify-content: space-between;
+}
+
+.web-description {
+  margin-left: 102px;
+  opacity: 0.5;
+  font-size: 40px;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-column {
+  @extend .flex;
+  flex-direction: column;
+}
+
+.search-login-register-links {
+  @extend .flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  .item {
+    margin-right: 50px;
+    font-size: 50px;
+  }
+}
+
+.nav-margin {
+  margin-left: $nav-margin + $hamburger-menu-width;
+}
+
+.hamburger-margin {
+  margin-left: $hamburger-menu-width;
+}
+
+.section-spacing {
+  margin-top: 100px;
 }
 
 a {
   color: black;
   text-decoration: none;
+  img:hover {
+    opacity: 0.8;
+  }
 }
 
 h1 {
@@ -71,43 +136,6 @@ textarea {
   text-indent: 20px;
 }
 
-.signup-panel {
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding: 50px;
-  width: 30vw;
-  height: 100vh;
-}
-
-.signup-form-top {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 50px;
-}
-
-.signin-button {
-  width: 240px;
-  height: 80px;
-  font-size: 50px;
-  font-weight: 600;
-  border-radius: 10px;
-  background-color: #DEDEDE;
-  border: 2px solid #909090;
-}
-
-.signup-button {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  width: 100%;
-  height: 80px;
-  font-size: 50px;
-  font-weight: 600;
-  border-radius: 10px;
-  background-color: #DEDEDE;
-  border: 2px solid #909090;
-}
-
 .hover-darkgray:hover {
   background-color: #909090;
 }
@@ -121,22 +149,67 @@ textarea {
   text-underline-offset: 0.2em;
 }
 
-.poster-image, .poster-image img{
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 70vw;
+.sign-panel {
+  position: relative;
+  padding: 50px;
+  width: 30vw;
   height: 100vh;
 }
 
-.poster-image-text {
-  position: absolute;
-  top: 52px;
-  left: 400px;
-  text-align: center;
-  font-size: 70px;
+.sign-form-top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 50px;
+}
+
+.sign-button {
+  width: 240px;
+  height: 80px;
+  font-size: 50px;
   font-weight: 600;
-  color: white;
+  border-radius: 10px;
+  background-color: #DEDEDE;
+  border: 2px solid #909090;
+}
+
+.step-button {
+  @extend .sign-button;
+  margin-top: 10px;
+  width: 180px;
+  height: 50px;
+  font-size: 20px;
+}
+
+.signup-button {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  width: 100%;
+  height: 80px;
+  font-size: 50px;
+  font-weight: 600;
+  border-radius: 10px;
+  background-color: #DEDEDE;
+  border: 2px solid #909090;
+}
+
+.poster-image {
+  position: relative;
+
+  img {
+    width: 70vw;
+    height: 100%;
+  }
+
+  .poster-image-text {
+    position: absolute;
+    top: 52px;
+    left: 400px;
+    text-align: center;
+    font-size: 70px;
+    font-weight: 600;
+    color: white;
+  }
 }
 
 .midline-text {
@@ -160,4 +233,10 @@ textarea {
   top: 50%;
   height: 1px;
   background: #ccc;
+}
+
+.line-break {
+  border: none;
+  margin: 20px 0;
+  border-bottom: 3px solid black;
 }

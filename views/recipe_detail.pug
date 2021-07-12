@@ -1,14 +1,18 @@
 extends navbar
 
 block content
-  h1 #{recipe.title}
-  p #{recipe.description}
-  ul
-    for i in recipe.ingredients
-      li #{i}
-  ol
-    for i in recipe.instructions
-      li #{i}
-  img(src=`${image.url}`, alt=`${image.filename}`, width=200, height=200)
-  a(href=`/recipe/${recipe._id}/update`) Edit
-  a(href=`/recipe/${recipe._id}/delete`) Delete
+  div(class='nav-margin')
+    h1 #{recipe.title}
+    p #{recipe.description}
+    ul
+      for i in recipe.ingredients
+        li #{i}
+    ol
+      for i in recipe.instructions
+        li #{i}
+    div(class='gallery-img')
+      img(src=`${image.url}`, alt=`${image.filename}`)
+    //-Edit and delete options if owner
+    if locals.currentUser !== undefined && recipe.user == locals.currentUser._id
+      a(href=`/recipe/${recipe._id}/update`) Edit
+      a(href=`/recipe/${recipe._id}/delete`) Delete

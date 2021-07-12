@@ -1,24 +1,29 @@
 extends navbar
 
 block content
-  h1(style='display:flex;padding-left:100px;') Create Recipe
-  form(id='recipeCreateForm', action="", method='POST', enctype='multipart/form-data', style='display:flex;flex-direction:column;width:50%;padding-left:100px;')
-    label(for='file') Choose File
-    input(type='file', name='file')
-    input(type="text", placeholder="Title", name="title", required) 
-    textarea(name="description", placeholder="Enter Recipe Description", required)
-    fieldset
-      legend Ingredients
-      button(type='button', onclick=`addInputToField('ingredients', 'Ingredient')`) Add Ingredient
-      button(type='button', onclick=`removeInputFromField('ingredients')`) Remove Ingredient
-      ul(id='ingredients')
-    fieldset
-      legend Instructions
-      button(type='button', onclick=`addInputToField('instructions', 'Step')`) Add Step
-      button(type='button', onclick=`removeInputFromField('instructions')`) Remove Step
-      ol(id='instructions')
-    button Submit
-  if errors
-    ul
-      for error in errors
-        li!= error.msg
+  div(class='nav-margin')
+    h1(class='flex') Create Recipe
+    form(class='flex-column', id='recipeCreateForm', action="", method='POST', enctype='multipart/form-data', style='width:50%;')
+      label(for='file', style='margin-top:20px;') 
+        h2 Upload Image
+      input(type='file', name='file', style='margin-top:0;padding:3px;')
+      input(type="text", placeholder="Title", name="title", required) 
+      textarea(name="description", placeholder="Enter Recipe Description", required)
+      fieldset
+        legend
+          h2(style='margin-top:10px;') Ingredients
+        button(class='step-button hover-pointer hover-darkgray', type='button', onclick=`lib.addInputToField('ingredients', 'Ingredient')`) Add Ingredient
+        button(class='step-button hover-pointer hover-darkgray', type='button', onclick=`lib.removeInputFromField('ingredients')`) Remove Ingredient
+        ul(id='ingredients')
+      fieldset
+        legend
+          h2(style='margin-top:10px;') Instructions
+        button(class='step-button hover-pointer hover-darkgray', type='button', onclick=`lib.addInputToField('instructions', 'Step')`) Add Step
+        button(class='step-button hover-pointer hover-darkgray', type='button', onclick=`lib.removeInputFromField('instructions')`) Remove Step
+        ol(id='instructions')
+        hr(class='line-break')
+      button(class='sign-button hover-pointer hover-darkgray', style='width:100%;margin-bottom:20px;') Submit
+    if errors
+      ul
+        for error in errors
+          li!= error.msg

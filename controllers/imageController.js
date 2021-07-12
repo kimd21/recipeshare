@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const Grid = require('gridfs-stream');
 
+
+// GridFS for uploading images and files
 const connect = mongoose.connection;
 let gfs;
 connect.once('open', function() {
@@ -8,6 +10,7 @@ connect.once('open', function() {
   gfs.collection('uploads');
 });
 
+// Get image from filename
 exports.image_get = function(req, res) {
   gfs.files.findOne({filename: req.params.filename}, (err, file) => {
     if (err) {return next(err);}

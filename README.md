@@ -1,0 +1,11 @@
+todo
+-google authentication
+-responsive design for signup and signin pages, try changing font-size to vw or vh units
+-responsive design
+-nutrition api
+-404 page
+-search feature
+-ssl certificate/https
+-add blog
+-clean up code, add comments, organize css
+-deploy

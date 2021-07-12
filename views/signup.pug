@@ -1,32 +1,34 @@
 extends layout
 
 block content
-  div(class='signup-panel')
-    div(class='signup-form-top')
-      header 
-        img(src="assets/chefhat.png", alt="Chef Hat", width=88, height=85)
-      a(href='../signin')
-        button(class='signin-button hover-darkgray hover-pointer') Sign in
-    p(style='font-size:35px;') Join for free
-    p(style='font-size:50px;font-weight:600;') Create an account
-    form(action="", method="POST")
-      input(name="firstName", placeholder="First Name", type="text")
-      input(name="lastName", placeholder="Last Name", type="text")
-      input(name="username", placeholder="Enter your username", type="text")
-      input(name="password", placeholder="Enter your password", type="password")
-      button(class='signup-button hover-darkgray hover-pointer') Sign up
-    p(style='font-size:30px;') Already have an account?
-      a(href='../signin')  
-        b(class='hover-underline') Sign in
-    p(style='margin-top: 200px;font-size:25px;text-underline-offset:3px;')
-      a(href='#')
-        u(class='hover-pointer') Privacy Policy
-      |  and 
-      a(href='#')
-        u(class='hover-pointer') Term of Service
-  div(class='poster-image')
-    img(src='assets/cooking.jpg', alt='Cooking Stock Photo')
-    div(class='poster-image-text') 
-      p Create, share, and sell 
-      p your favorite recipes!
+  div(class='flex')
+    div(class='sign-panel')
+      div(class='sign-form-top')
+        header
+          a(href='../')
+            img(class='chef-hat', src="assets/chefhat.png", alt="Chef Hat", style='padding-bottom:5px;')
+        a(href='../signin')
+          button(class='sign-button hover-darkgray hover-pointer') Sign in
+      p(style='font-size:35px;') Join for free
+      p(style='font-size:50px;font-weight:600;') Create an account
+      form(action="", method="POST")
+        input(name="firstName", placeholder="First Name", type="text")
+        input(name="lastName", placeholder="Last Name", type="text")
+        input(name="username", placeholder="Enter your username", type="text")
+        input(name="password", placeholder="Enter your password", type="password")
+        button(class='signup-button hover-darkgray hover-pointer') Sign up
+      p(style='font-size:30px;') Already have an account?
+        a(href='../signin')  
+          b(class='hover-underline', style='font-weight:600;') Sign in
+      p(style='margin-top:200px;font-size:25px;text-underline-offset:3px;')
+        a(href='#')
+          u(class='hover-pointer') Privacy Policy
+        |  and 
+        a(href='#')
+          u(class='hover-pointer') Term of Service
+    div(class='poster-image')
+      img(src='assets/cooking.jpg', alt='Cooking Stock Photo')
+      div(class='poster-image-text') 
+        p Create, share, and sell 
+        p your favorite recipes!
 

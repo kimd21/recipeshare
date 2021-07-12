@@ -2,16 +2,16 @@ const Recipe = require('../models/recipe.js');
 const Image = require('../models/image.js');
 const mongoose = require('mongoose');
 const Grid = require('gridfs-stream');
+const async = require('async');
+const {body, validationResult} = require('express-validator');
 
+// GridFS for storing images and files
 const connect = mongoose.connection;
 let gfs;
 connect.once('open', function() {
   gfs = Grid(connect.db, mongoose.mongo);
   gfs.collection('uploads');
 });
-
-const async = require('async');
-const {body, validationResult} = require('express-validator');
 
 exports.recipe_create_get = function(req, res) {
   res.render('recipe_create');
@@ -24,6 +24,8 @@ exports.recipe_create_post = function(req, res, next) {
   body('ingredients', 'Ingredients must not be empty').notEmpty().escape();
   body('instructions', 'Instructions must not be empty').notEmpty().escape();
   const errors = validationResult(req.body);
+
+  // Create new recipe
   let recipe = new Recipe({
     title: req.body.title,
     description: req.body.description,
@@ -36,6 +38,7 @@ exports.recipe_create_post = function(req, res, next) {
     res.render('recipe_create', {errors: errors.array()});
     return;
   } else {
+    // Save recipe to MongoDB
     recipe.save(
       function (err) {
         if (err) {return next(err);}
@@ -51,6 +54,7 @@ exports.recipe_create_post = function(req, res, next) {
       });
     }
 
+    // Create new image associated with recipe
     let newImage = new Image({
       filename: req.file.filename,
       fileId: req.file.id,
@@ -58,6 +62,7 @@ exports.recipe_create_post = function(req, res, next) {
       recipe: recipe._id
     });
 
+    // Save image to MongoDB
     newImage.save(
       function(err) {
         if (err) {return next(err);}
@@ -68,6 +73,7 @@ exports.recipe_create_post = function(req, res, next) {
 
 };
 
+// Get recipe info page
 exports.recipe_detail = function(req, res, next) {
   async.parallel({
     recipe: function(callback) {
@@ -87,6 +93,7 @@ exports.recipe_detail = function(req, res, next) {
   });
 };
 
+// Get recipe update page
 exports.recipe_update_get = function(req, res, next) {
   async.parallel({
     recipe: function(callback) {
@@ -113,6 +120,7 @@ exports.recipe_update_post = function(req, res, next) {
   body('ingredients', 'Ingredients must not be empty').notEmpty().escape();
   body('instructions', 'Instructions must not be empty').notEmpty().escape();
   const errors = validationResult(req.body);
+  // Create new recipe
   let recipe = new Recipe({
     title: req.body.title,
     description: req.body.description,
@@ -122,7 +130,7 @@ exports.recipe_update_post = function(req, res, next) {
     _id: req.params.id
   });
   
-  // Erase old image from GFS
+  // Erase old image from GFS and MongoDB
   Image.findOneAndRemove({recipe: req.params.id}, function(err, image) {
     if (err) {return next(err);}
     gfs.files.findOne({filename: image.filename}, (err, file) => {
@@ -133,7 +141,7 @@ exports.recipe_update_post = function(req, res, next) {
     })
   });
 
-  // Save new image
+  // Create new image
   let image = new Image({
     filename: req.file.filename,
     fileId: req.file.id,
@@ -141,12 +149,13 @@ exports.recipe_update_post = function(req, res, next) {
     recipe: recipe._id,
   });
 
+  // Save new image
   image.save(
     function(err) {
       if (err) {return next(err);}
     }
   );
-
+  
   if (!errors.isEmpty()) {
     res.render('recipe_update', {errors: errors.array()});
     return;
@@ -160,6 +169,7 @@ exports.recipe_update_post = function(req, res, next) {
 
 };
 
+// Get delete recipe page
 exports.recipe_delete_get = function(req, res, next) {
   async.parallel({
     recipe: function(callback) {
@@ -179,6 +189,7 @@ exports.recipe_delete_get = function(req, res, next) {
   });
 };
 
+// Delete recipe and its associated image from MongoDB and GridFS
 exports.recipe_delete_post = function(req, res, next) {
   if (req.body.submit === 'No') {
     res.redirect(`/profile/${res.locals.currentUser.username}`);
@@ -194,6 +205,7 @@ exports.recipe_delete_post = function(req, res, next) {
           if (err) {return next(err);}
         });
       })
+      // Redirect to user profile page
       res.redirect(`/profile/${res.locals.currentUser.username}`); 
     });
   }

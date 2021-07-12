@@ -1,4 +1,5 @@
-function submitContactForm(form) {
+// Format submitted contact form
+export function submitContactForm(form) {
   let obj = new XMLHttpRequest();
   obj.onreadystatechange = () => {
     if (obj.readyState == 4) {

@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+// MongoDB schema for individual recipes
 const RecipeSchema = new Schema({
   title: {type: String, unique: true, required: true},
   description: {type: String, required: true},

@@ -1,4 +1,5 @@
-function submitFeedbackForm(form) {
+// Format feedback form
+export function submitFeedbackForm(form) {
   let obj = new XMLHttpRequest();
   obj.onreadystatechange = () => {
     if (obj.readyState == 4) {
