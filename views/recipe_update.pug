@@ -10,8 +10,8 @@ block content
       figure(class='flex-column gallery-img', style='margin-top:20px;')
         img(src=`${image.url}`, alt=`${image.filename}`)
         figcaption Current Image
-      input(type="text", placeholder=`${recipe.title}`, name="title", required) 
-      textarea(name="description", placeholder=`${recipe.description}`, required)
+      input(type="text", name="title", value=`${recipe.title}`, required)
+      textarea(name="description", required) #{recipe.description}
       fieldset
         legend
           h2(style='margin-top:10px;') Ingredients
@@ -20,6 +20,7 @@ block content
         ul(id='ingredients')
           for i in recipe.ingredients
             li #{i}
+            input(type='hidden', name='ingredients', value=`${i}`)
       fieldset
         legend
           h2(style='margin-top:10px;') Instructions
@@ -28,6 +29,7 @@ block content
         ol(id='instructions')
           for i in recipe.instructions
             li #{i}
+            input(type='hidden', name='instructions', value=`${i}`)
         hr(class='line-break')
       button(class='sign-button hover-pointer hover-darkgray', style='width:100%;margin-bottom:20px;') Submit
     if errors

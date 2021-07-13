@@ -1,18 +1,30 @@
 extends navbar
 
 block content
-  div(class='nav-margin')
-    h1 #{recipe.title}
-    p #{recipe.description}
-    ul
-      for i in recipe.ingredients
-        li #{i}
-    ol
-      for i in recipe.instructions
-        li #{i}
-    div(class='gallery-img')
-      img(src=`${image.url}`, alt=`${image.filename}`)
-    //-Edit and delete options if owner
-    if locals.currentUser !== undefined && recipe.user == locals.currentUser._id
-      a(href=`/recipe/${recipe._id}/update`) Edit
-      a(href=`/recipe/${recipe._id}/delete`) Delete
+  div(class='flex nav-margin')
+    div(class='flex-column')
+      h1 #{recipe.title}
+      //-Edit and delete options if owner
+      if locals.currentUser !== undefined && recipe.user == locals.currentUser._id
+        div(class='flex')
+          a(href=`/recipe/${recipe._id}/update`) 
+            button(class='step-button hover-pointer hover-darkgray', style='width:80px;') Edit
+          a(href=`/recipe/${recipe._id}/delete`) 
+            button(class='step-button hover-pointer hover-darkgray', style='width:80px;margin-left:10px;') Delete
+  div(class='flex nav-margin', style='margin-top:80px;')
+    div(class='flex-column')
+      div(class='gallery-img', style='justify-content:start;')
+        img(src=`${image.url}`, alt=`${image.filename}`)
+      section(style='margin-top:20px;') 
+        h2 Description
+        p #{recipe.description}
+    div(class='flex-column', style='margin-left:200px;')
+      h2 Ingredients
+      ul
+        for i in recipe.ingredients
+          li(style='margin-top:10px;') #{i}
+      h2(style='margin-top:120px;') Instructions
+      ol
+        for i in recipe.instructions
+          li(style='margin-top:10px;') #{i}
+   

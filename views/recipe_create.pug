@@ -6,7 +6,7 @@ block content
     form(class='flex-column', id='recipeCreateForm', action="", method='POST', enctype='multipart/form-data', style='width:50%;')
       label(for='file', style='margin-top:20px;') 
         h2 Upload Image
-      input(type='file', name='file', style='margin-top:0;padding:3px;')
+      input(type='file', name='file', style='margin-top:0;padding:3px;', required)
       input(type="text", placeholder="Title", name="title", required) 
       textarea(name="description", placeholder="Enter Recipe Description", required)
       fieldset

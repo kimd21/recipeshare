@@ -120,6 +120,7 @@ exports.recipe_update_post = function(req, res, next) {
   body('ingredients', 'Ingredients must not be empty').notEmpty().escape();
   body('instructions', 'Instructions must not be empty').notEmpty().escape();
   const errors = validationResult(req.body);
+
   // Create new recipe
   let recipe = new Recipe({
     title: req.body.title,
@@ -130,31 +131,34 @@ exports.recipe_update_post = function(req, res, next) {
     _id: req.params.id
   });
   
-  // Erase old image from GFS and MongoDB
-  Image.findOneAndRemove({recipe: req.params.id}, function(err, image) {
-    if (err) {return next(err);}
-    gfs.files.findOne({filename: image.filename}, (err, file) => {
+  // Update image file if not empty
+  if (req.file == '') {
+    // Erase old image from GFS and MongoDB
+    Image.findOneAndRemove({recipe: req.params.id}, function(err, image) {
       if (err) {return next(err);}
-      gfs.remove({_id: new mongoose.Types.ObjectId(file._id), root: 'uploads'}, (err) => {
+      gfs.files.findOne({filename: image.filename}, (err, file) => {
         if (err) {return next(err);}
-      });
-    })
-  });
+        gfs.remove({_id: new mongoose.Types.ObjectId(file._id), root: 'uploads'}, (err) => {
+          if (err) {return next(err);}
+        });
+      })
+    });
 
-  // Create new image
-  let image = new Image({
-    filename: req.file.filename,
-    fileId: req.file.id,
-    createdAt: Date(),
-    recipe: recipe._id,
-  });
+    // Create new image
+    let image = new Image({
+      filename: req.file.filename,
+      fileId: req.file.id,
+      createdAt: Date(),
+      recipe: recipe._id,
+    });
 
-  // Save new image
-  image.save(
-    function(err) {
-      if (err) {return next(err);}
-    }
-  );
+    // Save new image
+    image.save(
+      function(err) {
+        if (err) {return next(err);}
+      }
+    );
+  }
   
   if (!errors.isEmpty()) {
     res.render('recipe_update', {errors: errors.array()});
@@ -166,7 +170,6 @@ exports.recipe_update_post = function(req, res, next) {
         res.redirect(therecipe.url);
     });
   };
-
 };
 
 // Get delete recipe page

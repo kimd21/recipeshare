@@ -1,11 +1,18 @@
 todo
+-let menu scroll with page when screen reduced in size
+-add edit/delete buttons next to item itself
+-profile picture
+-add multiple images for one recipe
 -google authentication
+-style detail page more
+-drag and drop ingredients and instructions around
 -responsive design for signup and signin pages, try changing font-size to vw or vh units
 -responsive design
+-stripe api
 -nutrition api
 -404 page
 -search feature
 -ssl certificate/https
 -add blog
 -clean up code, add comments, organize css
--deploy
+-**** deploy ****

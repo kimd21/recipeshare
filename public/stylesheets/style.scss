@@ -22,6 +22,7 @@ body {
   width: $nav-margin;
   height: 100%;
   background-color: #DEDEDE;
+  z-index: 1;
 
   ul {
     overflow: auto; /*Enable scrolling*/
@@ -178,6 +179,20 @@ textarea {
   width: 180px;
   height: 50px;
   font-size: 20px;
+}
+
+.delete-button {
+  width: 100px;
+  height: 50px;
+  font-size: 30px;
+  font-weight: 600;
+  border-radius: 10px;
+  background-color: red;
+  border: 2px solid black;
+
+  &:hover {
+    opacity: 0.5;
+  }
 }
 
 .signup-button {
